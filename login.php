@@ -2,38 +2,90 @@
 // session_start();
 require 'functions.php';
 
-if (isset($_POST["login"])) {
+// if (isset($_POST["login"])) {
 
+//   $username = $_POST["username"];
+//   $password = $_POST["password"];
+
+
+//   $result = mysqli_query(koneksi(), "SELECT * FROM user WHERE username = '$username'");
+
+
+
+//   // cek username
+//   if (mysqli_num_rows($result) === 1) {
+//     $user = mysqli_fetch_assoc($result);
+
+//     if ($user['id_role'] == 1) {
+//       header("Location: admin/dashboard.php");
+//       exit;
+//     } else if ($user['id_role'] == 2) {
+//       header("Location: index.php");
+//       exit;
+//     } else {
+//       echo "Password salah.";
+//     }
+
+//     // cek password
+//     $row = mysqli_fetch_assoc($result);
+//     if (password_verify($password, $row["password"])) {
+//       // set session
+//       // $_SESSION["login"] = true;
+
+//       header("location: index.php");
+//       exit;
+//     }
+//   }
+
+//   $error = true;
+// }
+// if (isset($_POST["login"])) {
+
+//   // Ambil input dan sanitasi
+//   $username = mysqli_real_escape_string(koneksi(), $_POST["username"]);
+//   $password = mysqli_real_escape_string(koneksi(), $_POST["password"]);
+
+//   // Buat query untuk mendapatkan user berdasarkan username
+//   $result = mysqli_query(koneksi(), "SELECT * FROM user WHERE username = '$username'");
+
+//   // Cek apakah username ditemukan
+//   if (mysqli_num_rows($result) === 1) {
+//     $user = mysqli_fetch_assoc($result);
+
+//     // Cek password menggunakan password_verify
+//     if (password_verify($password, $user["password"])) {
+//       // Cek role
+//       if ($user['id_role'] == 1) {
+//         header("Location: admin/dashboard.php");
+//         exit;
+//       } else if ($user['id_role'] == 2) {
+//         header("Location: index.php");
+//         exit;
+//       }
+//     } else {
+//       echo "Password salah.";
+//     }
+//   } else {
+//     echo "Username salah atau tidak ditemukan.";
+//   }
+
+//   $error = true;
+// }
+if (isset($_POST["login"])) {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  $result = mysqli_query(koneksi(), "SELECT * FROM user WHERE username = '$username'");
-
-
-
-  // cek username
-  if (mysqli_num_rows($result) === 1) {
-
-    // cek password
-    $row = mysqli_fetch_assoc($result);
-    if (password_verify($password, $row["password"])) {
-      // set session
-      // $_SESSION["login"] = true;
-
-      header("location: index.php");
-      exit;
-    }
-  }
-
-  $error = true;
+  login($username, $password);
 }
-
-
 ?>
+
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <title>Halaman Login</title>
   <style>
     body {
@@ -101,7 +153,6 @@ if (isset($_POST["login"])) {
       text-decoration: none;
       position: relative;
       color: rgb(255, 255, 255, 0.712);
-
     }
 
     a.forgot:hover {
@@ -145,10 +196,6 @@ if (isset($_POST["login"])) {
   </style>
 </head>
 
-<?php if (isset($error)) : ?>
-  <p style="color: red; font-style: italic; text-align: center;">username / password salah</p>
-<?php endif; ?>
-
 <body>
   <div class="box">
     <div class="container">
@@ -157,7 +204,7 @@ if (isset($_POST["login"])) {
       </div>
       <form action="" method="post">
         <div class="input-field">
-          <input type="text" name="username" id="username" placeholder="username . . ." required />
+          <input type="text" name="username" id="username" placeholder="username . . ." required autofocus autocomplete="off" />
           <i class="bx bx-user"></i>
         </div>
         <div class="input-field">

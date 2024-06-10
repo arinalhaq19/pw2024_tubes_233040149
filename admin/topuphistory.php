@@ -2,7 +2,7 @@
 require '../functions.php';
 
 // Tombol cari ditekan
-if (isset($_POST["search"])) {
+if (isset($_POST["cari"])) {
   $kunci = $_POST["kunci"];
   $efootballs = search($kunci);
 } else {
@@ -94,7 +94,7 @@ if (isset($_POST["search"])) {
       <li><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
       <li><a href="user.php"><i class="fas fa-users"></i> Users</a></li>
       <li><a href="topuphistory.php"><i class="fas fa-history"></i> Top Up History</a></li>
-      <li><a href="#"><i class="bi bi-box-arrow-left"></i> Log Out</a></li>
+      <li><a href="../login.php"><i class="bi bi-box-arrow-left"></i> Log Out</a></li>
     </ul>
   </div>
 
@@ -105,7 +105,7 @@ if (isset($_POST["search"])) {
     <form action="" method="post" class="d-flex w-50 " role="search">
 
       <input type="text" name="kunci" class="form-control me-2" autofocus>
-      <button type="submit" name="search" class="btn btn-primary"> Cari!</button>
+      <button type="submit" name="cari" class="btn btn-primary"> Cari!</button>
     </form>
     <br>
     <table class="table">

@@ -1,8 +1,11 @@
 <?php
-
-
 require '../functions.php';
+// session_start();
 
+// if (!isset($_SESSION['user_id']) || $_SESSION['id_role'] != 1) {
+//   header("Location: dashboard.php");
+//   exit;
+// }
 
 ?>
 
@@ -89,7 +92,7 @@ require '../functions.php';
       <li><a href="dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
       <li><a href="user.php"><i class="fas fa-users"></i> Users</a></li>
       <li><a href="topuphistory.php"><i class="fas fa-history"></i> Top Up History</a></li>
-      <li><a href="#"><i class="bi bi-box-arrow-left"></i> Log Out</a></li>
+      <li><a href="../login.php"><i class="bi bi-box-arrow-left"></i> Log Out</a></li>
     </ul>
   </div>
 

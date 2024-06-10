@@ -29,7 +29,7 @@ if (isset($_POST['tambah'])) {
     <form action="" method="POST">
       <div class="mb-3">
         <label for="username" class="form-label">Username :</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+        <input type="text" class="form-control" id="username" name="username" required autofocus>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email :</label>

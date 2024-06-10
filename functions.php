@@ -198,3 +198,34 @@ function search($kunci)
   }
   return $rows;
 }
+
+function login($username, $password)
+{
+  $conn = koneksi();
+
+  // Sanitasi input untuk mencegah SQL Injection
+  $username = mysqli_real_escape_string($conn, $username);
+
+  // Query untuk memeriksa pengguna
+  $query = "SELECT * FROM user WHERE username = '$username'";
+  $result = mysqli_query($conn, $query);
+
+  if (mysqli_num_rows($result) === 1) {
+    $user = mysqli_fetch_assoc($result);
+
+    // Verifikasi password
+    if (password_verify($password, $user['password'])) {
+      if ($user['id_role'] == 1) {
+        header("Location: admin/dashboard.php");
+        exit;
+      } else if ($user['id_role'] == 2) {
+        header("Location: index.php");
+        exit;
+      }
+    } else {
+      echo "Password salah.";
+    }
+  } else {
+    echo "Username salah atau tidak ditemukan.";
+  }
+}
