@@ -1,9 +1,14 @@
 <?php
-
-
 require '../functions.php';
 
-
+// Tombol cari ditekan
+if (isset($_POST["cari"])) {
+  $keyword = $_POST["keyword"];
+  $users = cari($keyword);
+} else {
+  // Jika tidak ada pencarian, tampilkan semua user
+  $users = query("SELECT * FROM `user`");
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +77,7 @@ require '../functions.php';
 
     .card {
       background-color: #fff;
-      padding: 40vh;
+      padding: 35vh;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
@@ -94,8 +99,51 @@ require '../functions.php';
   </div>
 
   <div class="content">
-    <h1> Dashboard</h1>
-    <div class="card"></div>
+    <h1>Data Users</h1>
+
+    <a href="tambah.php" class="btn btn-primary mb-3">Tambah User</a>
+
+    <br>
+
+    <form action="" method="post" class="d-flex w-50" role="search">
+      <input type="text" name="keyword" class="form-control me-2" autofocus>
+      <button type="submit" name="cari" class="btn btn-primary">Cari!</button>
+    </form>
+
+    <br>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (!empty($users)) : ?>
+          <?php $i = 1; ?>
+          <?php foreach ($users as $user) : ?>
+            <tr>
+              <th scope="row"><?= $user['id']; ?></th>
+              <td><?= $user['username']; ?></td>
+              <td><?= $user['email']; ?></td>
+              <td><?= $user['password']; ?></td>
+              <td>
+                <a href="ubahuser.php?id=<?= $user['id']; ?>" class="badge text-bg-warning text-decoration-none">Ubah</a>
+                <a href="hapus.php?id=<?= $user['id']; ?>" class="badge text-bg-danger text-decoration-none">Hapus</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <tr>
+            <td colspan="5" class="text-center">Tidak ada data</td>
+          </tr>
+        <?php endif; ?>
+      </tbody>
+    </table>
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

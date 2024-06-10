@@ -7,7 +7,23 @@ function koneksi()
 }
 
 
+function query($query)
+{
+  $conn = koneksi();
 
+  $result = mysqli_query($conn, $query);
+
+  if (mysqli_num_rows($result) == 1) {
+    return mysqli_fetch_assoc($result);
+  }
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}
 
 function registrasi($data)
 {
@@ -51,4 +67,134 @@ function registrasi($data)
   mysqli_query($conn, "INSERT INTO user values(NULL, '$username', '$email', '$password', 2)");
 
   return mysqli_affected_rows($conn);
+}
+
+function topup($data)
+{
+  $conn = koneksi();
+
+  $jumlah = $data["jumlah"];
+  $nickname = strtolower(stripslashes($data["nickname"]));
+  $metode = $data["metode"];
+  $email = htmlspecialchars($data["email"]);
+
+  $query = "INSERT INTO orders VALUES (null,'$jumlah', '$nickname', '$metode', '$email')";
+  if (mysqli_query($conn, $query)) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
+
+
+function tambah($data)
+{
+  $conn = koneksi();
+
+
+  $username = strtolower(stripslashes($data["username"]));
+  $email = htmlspecialchars($data["email"]);
+  $password = mysqli_real_escape_string($conn, $data["password"]);
+
+  $result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
+  if (mysqli_fetch_assoc($result)) {
+    echo "<script>
+            alert('username sudah terdaftar!')
+          </script>";
+    return false;
+  }
+
+  $result = mysqli_query($conn, "SELECT email FROM user WHERE email = '$email'");
+  if (mysqli_fetch_assoc($result)) {
+    echo "<script>
+            alert('email sudah terdaftar!')
+          </script>";
+    return false;
+  }
+
+
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  mysqli_query($conn, "INSERT INTO user values(NULL, '$username', '$email', '$password', 2)");
+
+  return mysqli_affected_rows($conn);
+}
+
+
+function ubahuser($data)
+{
+  $conn = koneksi();
+
+  $id = htmlspecialchars($data['id']);
+  $username = htmlspecialchars($data['username']);
+  $email = htmlspecialchars($data['email']);
+  $password = htmlspecialchars($data['password']);
+
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+
+  $query = "UPDATE user SET 
+                username = '$username',
+                email = '$email',
+                password = '$password'
+                WHERE id = $id";
+
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+
+  return mysqli_affected_rows($conn);
+}
+
+function hapus($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM user WHERE id  = $id") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+function hapushistory($id)
+{
+  $conn = koneksi();
+
+  mysqli_query($conn, "DELETE FROM orders WHERE id_order  = $id") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
+}
+
+function cari($keyword)
+{
+  $conn = koneksi();
+  $keyword = htmlspecialchars($keyword); // Escape input
+  $query = "SELECT * FROM user WHERE username LIKE '%$keyword%' OR email LIKE '%$keyword%'";
+  $result = mysqli_query($conn, $query);
+
+  if (!$result) {
+    die('Query Error: ' . mysqli_error($conn));
+  }
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
+}
+
+function search($kunci)
+{
+  $conn = koneksi();
+  $kunci = htmlspecialchars($kunci); // Escape input
+  $query = "SELECT * FROM orders NATURAL JOIN efootball WHERE nickname LIKE '%$kunci%' OR email LIKE '%$kunci%' OR coin LIKE '%$kunci%' OR harga LIKE '%$kunci%' OR method LIKE '%$kunci%'";
+  $result = mysqli_query($conn, $query);
+
+  if (!$result) {
+    die('Query Error: ' . mysqli_error($conn));
+  }
+
+  $rows = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+  return $rows;
 }

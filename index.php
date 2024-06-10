@@ -13,22 +13,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- aos -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- my css -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- bootstrap js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- font Awesome For icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- icon bootsrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <!-- animasi scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Efootball | Top-up</title>
 </head>
 
-<body class="vh-100">
+<body class="vh-100 awal">
     <!-- Navbar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark main-color">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark  main-color">
         <div class="container">
             <!-- Logo -->
             <img src="assets/image/ifel-logo-putih.png" class="hello">
@@ -57,18 +55,19 @@
                             <a class="nav-link" href="#contact">Contact</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#login">Top up</a>
+                            <a class="nav-link" href="topup.php">Top up</a>
                         </li>
                     </ul>
                     <!-- Login | Sign up -->
                     <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                        <a href="login.php" class="text-white text-decoration-none">Login</a>
+                        <a href="logout.php" class="text-white text-decoration-none">logout</a>
                         <a href="registrasi.php" class="text-white text-decoration-none px-3 py-1 bg-primary rounded-4">Register</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
+    <!-- akhir navbar -->
 
     <!-- banner -->
     <section id="home">
@@ -105,11 +104,12 @@
             </div>
         </div>
     </section>
+    <!-- akhir banner -->
 
     <!-- about -->
     <section class="about" style="background-color: #1c1f2a" id="about">
         <div class="container-fluid py-5">
-            <div class="about">
+            <div class="about" data-aos="fade-down" data-aos-offset="300" data-aos-duration="2000">
                 <div class="header-text">
                     <h1 class="text-center text-white mt-5">About Us</h1>
                 </div>
@@ -118,7 +118,7 @@
                     <div class="card-body">
                         <div class="about text-center mt-5">
                             <h3>Efootball Store : Website top-up terbesar, tercepat dan terpercaya di Indonesia</h3>
-                            <p>Setiap bulannya, jutaan gamers menggunakan efootball Store untuk melakukan pembelian kredit game dengan instan</p>
+                            <p>Setiap bulannya, jutaan gamers menggunakan efootball Store untuk melakukan pembelian coin game dengan instan</p>
                         </div>
                     </div>
                 </div>
@@ -127,28 +127,30 @@
 
 
             <div class="row justify-content-center">
-                <div class="col-lg-4">
+                <div class="col-md-3 ">
 
-                    <div class="text-white card-home mt-5 p-4" style="width: 18rem;">
+                    <div class="text-white card-home mt-5 p-4" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon text-center">
                             <i class="bi bi-stopwatch" style="font-size: 2rem;"></i>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Bayar Hitungan Detik</h4><br>
-                            <p class="card-text">
+                            <h4 class="card-title text-center">Bayar Hitungan Detik</h4><br>
+                            <p class="card-text text-center">
                                 Dibutuhkan beberapa detik saja untuk menyelesaikan pembayaran, karena situs kami berfungsi dengan baik dan mudah untuk digunakan.
                             </p>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-md-3">
 
-                    <div class="text-white card-home mt-5 p-4" style="width: 18rem;">
+                    <div class="text-white card-home mt-5 p-4" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon text-center">
                             <i class="bi bi-wallet2" style="font-size: 2rem;"></i>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Metode Pembayaran Terbaik</h4>
-                            <p class="card-text">
+                            <h4 class="card-title text-center">Metode Pembayaran Terbaik</h4>
+                            <p class="card-text text-center">
                                 Kami menawarkan begitu banyak pilihan pembayaran mulai dari dana, gopay, ovo
                                 dan pembayaran di mini market terdekat.
                             </p>
@@ -157,40 +159,46 @@
                 </div>
 
 
-                <div class="col-lg-4">
+                <div class="col-md-3">
 
-                    <div class="text-white card-home mt-5 p-4" style="width: 18rem;">
+                    <div class="text-white card-home mt-5 p-4" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon text-center">
-                            <i class="bi bi-gem" style="font-size: 2rem;"></i>
+                            <i class="bi bi-coin" style="font-size: 2rem;"></i>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Pengiriman Instan</h4><br>
-                            <p class="card-text">
+                            <h4 class="card-title text-center">Pengiriman Instan</h4>
+                            <p class="card-text text-center">
                                 Ketika kamu melakukan top-up di sini, item atau barang yang kamu beli akan selalu dikirim
-                                ke akun kamu secara instan dan cepat, tanpa tertunda.
+                                ke akun kamu secara instan dan cepat tanpa tertunda.
                             </p>
                         </div>
                     </div>
-                    <div class="text-white card-home mt-5 p-4" style="width: 18rem;">
+                </div>
+
+                <div class="col-md-3">
+
+                    <div class="text-white card-home mt-5 p-4" data-aos="flip-left" data-aos-duration="1000">
                         <div class="icon text-center">
                             <i class="bi bi-headset" style="font-size: 2rem;"></i>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">Layanan Pelanggan cepat & ramah</h4><br>
-                            <p class="card-text">
+                            <h4 class="card-title text-center">Layanan Pelanggan cepat & ramah</h4><br>
+                            <p class="card-text text-center">
                                 Kami selalu siap membantumu kapanpun dan di manapun.
                             </p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+    <!-- akhir about -->
 
     <!-- contact -->
     <section id="contact">
         <div class="container-fluid py-5 main-color">
-            <div class="container">
+            <div class="container" data-aos="zoom-in" data-aos-offset="400" data-aos-duration="1000">
                 <h1 class="text-center text-white mt-5">Contact Us</h1>
 
                 <form class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-5 text-white">
@@ -213,10 +221,11 @@
             </div>
         </div>
     </section>
+    <!-- akhir contact -->
 
     <!-- social media -->
     <div class="contaner-fluid py-5 content-sosialmedia text-light">
-        <div class="container">
+        <div class="container" data-aos="fade-up">
             <h5 class="text-center mb-4">Temui Kami</h5>
             <div class="row justify-content-center">
                 <div class="col-sm-1 d-flex justify-content-center mb-2 icon-sosmed">
@@ -231,7 +240,7 @@
                 </div>
                 <div class="col-sm-1 d-flex justify-content-center mb-2 icon-sosmed">
                     <a href="https://www.instagram.com/">
-                        <i class="bi bi-instagram fs-4" style="color: #3F4E57;"></i>
+                        <i class="bi bi-instagram fs-4" style="color: #8a3ab9;"></i>
                     </a>
                 </div>
                 <div class="col-sm-1 d-flex justify-content-center icon-sosmed">
@@ -242,6 +251,7 @@
             </div>
         </div>
     </div>
+    <!-- akhir sosmed -->
 
     <!-- footer -->
     <div class="container-fluid py-3 text-light main-color">
@@ -250,10 +260,30 @@
             <label>Created by Arinal</label>
         </div>
     </div>
+    <!-- akhir footer -->
 
-    <!-- logo footer-->
-    <!-- <script src="https//unpkg..com/@phosphor-icons/web"></script> -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script>
+        gsap.from('.navbar', {
+            duration: 1.5,
+            y: '-100%',
+            opacity: 0,
+            ease: 'bounce'
+        });
+        gsap.from('.icon-sosmed i', {
+            duration: 1,
+            rotateY: 360,
+            opacity: 0,
+        });
+    </script> -->
 </body>
 
 
