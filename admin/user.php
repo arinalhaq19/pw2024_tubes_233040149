@@ -111,48 +111,49 @@ if (isset($_POST["cari"])) {
     <br>
 
     <form action="" method="post" class="d-flex w-50" role="search">
-      <input type="text" name="keyword" class="form-control me-2" autofocus>
-      <button type="submit" name="cari" class="btn btn-primary">Cari!</button>
+      <input type="text" name="keyword" class="form-control me-2" autofocus id="keyword">
+      <button type="submit" name="cari" class="btn btn-primary" id="tombol-cari">Cari!</button>
     </form>
 
     <br>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Password</th>
-          <th scope="col">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php if (!empty($users)) : ?>
-          <?php $i = 1; ?>
-          <?php foreach ($users as $user) : ?>
-            <tr>
-              <th scope="row"><?= $user['id']; ?></th>
-              <td><?= $user['username']; ?></td>
-              <td><?= $user['email']; ?></td>
-              <td><?= $user['password']; ?></td>
-              <td>
-                <a href="ubahuser.php?id=<?= $user['id']; ?>" class="badge text-bg-warning text-decoration-none">Ubah</a>
-                <a href="hapus.php?id=<?= $user['id']; ?>" class="badge text-bg-danger text-decoration-none">Hapus</a>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        <?php else : ?>
+    <div id="container">
+      <table class="table">
+        <thead>
           <tr>
-            <td colspan="5" class="text-center">Tidak ada data</td>
+            <th scope="col">No</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Aksi</th>
           </tr>
-        <?php endif; ?>
-      </tbody>
-    </table>
-
+        </thead>
+        <tbody>
+          <?php if (!empty($users)) : ?>
+            <?php $i = 1; ?>
+            <?php foreach ($users as $user) : ?>
+              <tr>
+                <th scope="row"><?= $user['id']; ?></th>
+                <td><?= $user['username']; ?></td>
+                <td><?= $user['email']; ?></td>
+                <td><?= $user['password']; ?></td>
+                <td>
+                  <a href="ubahuser.php?id=<?= $user['id']; ?>" class="badge text-bg-warning text-decoration-none">Ubah</a>
+                  <a href="hapus.php?id=<?= $user['id']; ?>" class="badge text-bg-danger text-decoration-none">Hapus</a>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          <?php else : ?>
+            <tr>
+              <td colspan="5" class="text-center">Tidak ada data</td>
+            </tr>
+          <?php endif; ?>
+        </tbody>
+      </table>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+  <script src="js/reset.js"></script>
 </body>
 
 </html>

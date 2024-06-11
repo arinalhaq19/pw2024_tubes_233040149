@@ -7,20 +7,48 @@ function koneksi()
 }
 
 
+// function query($query)
+// {
+//   $conn = koneksi();
+
+//   $result = mysqli_query($conn, $query);
+
+//   if (mysqli_num_rows($result) == 1) {
+//     return mysqli_fetch_assoc($result);
+//   }
+
+//   $rows = [];
+//   while ($row = mysqli_fetch_assoc($result)) {
+//     $rows[] = $row;
+//   }
+
+//   return $rows;
+// }
+
 function query($query)
 {
+  // Informasi koneksi database
+
+
+  // Buat koneksi
   $conn = koneksi();
 
-  $result = mysqli_query($conn, $query);
-
-  if (mysqli_num_rows($result) == 1) {
-    return mysqli_fetch_assoc($result);
+  // Periksa koneksi
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
   }
 
+  // Jalankan query
+  $result = $conn->query($query);
   $rows = [];
-  while ($row = mysqli_fetch_assoc($result)) {
-    $rows[] = $row;
+  if ($result) {
+    while ($row = $result->fetch_assoc()) {
+      $rows[] = $row;
+    }
   }
+
+  // Tutup koneksi
+  $conn->close();
 
   return $rows;
 }
