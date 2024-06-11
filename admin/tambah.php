@@ -39,13 +39,10 @@ if (isset($_POST['tambah'])) {
         <label for="paswword" class="form-label">password :</label>
         <input type="password" class="form-control" id="password" name="password" required>
       </div>
-      <button type="submit" name='tambah' class="btn btn-primary">Tambah Data
-
-      </button>
+      <button type="submit" name='tambah' class="btn btn-primary">Tambah Data</button>
     </form>
 
   </div>
-
 
 
 

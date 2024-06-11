@@ -77,6 +77,8 @@ if (isset($_POST["login"])) {
 
   login($username, $password);
 }
+
+$error = true;
 ?>
 
 
@@ -88,14 +90,18 @@ if (isset($_POST["login"])) {
   <meta charset="UTF-8">
   <title>Halaman Login</title>
   <style>
+    @font-face {
+      font-family: 'eFootballStencil';
+      src: url('assets/font/eFootballStencil-Regular.woff') format('woff');
+    }
+
     body {
-      background-image: url(assets/image/stik.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
+      font-family: 'efootballStencil', sans-serif;
+      background-image: url('assets/image/stik.jpg');
+      background-size: contain;
+      /* background-repeat: no-repeat; */
       background-position: center;
-      background-attachment: fixed;
-      font-family: 'efootballStencil-Reguler', sans-serif;
-      src: url(assets/font/eFootballStencil-Regular.woff) format('woff');
+      /* background-attachment: fixed; */
     }
 
     .box {
@@ -109,11 +115,15 @@ if (isset($_POST["login"])) {
       width: 350px;
       display: flex;
       flex-direction: column;
-      padding: 0 15px 0 15px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      color: #c5c6c7;
     }
 
     header {
-      color: #fff;
+      color: #66fcf1;
       font-size: 30px;
       display: flex;
       justify-content: center;
@@ -128,70 +138,58 @@ if (isset($_POST["login"])) {
 
     .input-field input {
       height: 45px;
-      width: 87%;
+      width: 100%;
       border: none;
       outline: none;
-      border-radius: 30px;
+      border-radius: 4px;
       color: #fff;
-      padding: 0 0 0 42px;
+      padding-left: 15px;
       background: rgba(255, 255, 255, 0.1);
+      box-sizing: border-box;
     }
 
-    i {
-      position: relative;
-      top: -31px;
-      left: 17px;
-      color: #fff;
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #66fcf1;
+      text-align: left;
     }
 
-    ::-webkit-input-placeholder {
-      color: #fff;
+    ::placeholder {
+      color: #c5c6c7;
     }
 
-    a.forgot {
+    a.forgot,
+    a.sign-up {
       text-align: center;
       text-decoration: none;
-      position: relative;
-      color: rgb(255, 255, 255, 0.712);
+      color: rgba(255, 255, 255, 0.712);
+      display: block;
+      margin-bottom: 15px;
     }
 
-    a.forgot:hover {
-      text-decoration: underline;
-      color: #fffffffd;
-    }
-
-    a.sign-up {
-      text-decoration: none;
-      color: rgb(255, 255, 255, 0.712);
-    }
-
+    a.forgot:hover,
     a.sign-up:hover {
       text-decoration: underline;
       color: #fffffffd;
     }
 
-    p {
-      cursor: default;
-    }
-
-    p.forgot {
-      cursor: pointer;
-    }
-
     .submit {
       border: none;
-      border-radius: 30px;
+      border-radius: 4px;
       font-size: 15px;
       height: 45px;
       outline: none;
       width: 100%;
-      background: rgba(255, 255, 255, 0.7);
+      background: #66fcf1;
+      color: #1f2833;
       cursor: pointer;
       transition: 0.3s;
     }
 
     .submit:hover {
-      box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+      background: #45a29e;
     }
   </style>
 </head>
@@ -204,11 +202,13 @@ if (isset($_POST["login"])) {
       </div>
       <form action="" method="post">
         <div class="input-field">
-          <input type="text" name="username" id="username" placeholder="username . . ." required autofocus autocomplete="off" />
+          <label for="username">username :</label>
+          <input type="text" name="username" id="username" required autofocus autocomplete="off" />
           <i class="bx bx-user"></i>
         </div>
         <div class="input-field">
-          <input type="password" name="password" id="password" placeholder="password . . ." required />
+          <label for="password">password :</label>
+          <input type="password" name="password" id="password" required />
           <i class="bx bx-lock-alt"></i>
         </div>
         <a href="#" class="forgot">

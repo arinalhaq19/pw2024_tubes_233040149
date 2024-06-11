@@ -223,9 +223,13 @@ function login($username, $password)
         exit;
       }
     } else {
-      echo "Password salah.";
+      echo  "<script>
+                alert('Password salah');
+             </script>";
     }
   } else {
-    echo "Username salah atau tidak ditemukan.";
+    echo "<script>
+                alert('Username salah atau tidak ditemukan');
+          </script>";
   }
 }

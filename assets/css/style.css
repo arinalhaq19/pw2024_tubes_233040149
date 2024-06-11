@@ -1,7 +1,11 @@
 /* font */
+@font-face {
+    font-family: 'eFootballStencil';
+    src: url('../font/eFootballStencil-Regular.woff') format('woff');
+}
+
 body {
-    font-family: 'efootballStencil-Reguler', sans-serif;
-    src: url(../font/eFootballStencil-Regular.woff) format('woff');
+    font-family: 'efootballStencil', sans-serif;
     overflow: scroll;
 }
 
